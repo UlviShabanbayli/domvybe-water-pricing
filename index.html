@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#dcdee0">
+<title>Tidal · Pricing</title>
+<meta name="description" content="Pay for the team you actually have. Drag the water to your headcount: a team-size pricing slider that fills a glass with water.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/water.css">
+<script>
+  // storage: versioned keys only; anything older is wiped. The page's theme is its own (light) and never follows the OS.
+  try {
+    for (let i = localStorage.length - 1; i >= 0; i--) { const k = localStorage.key(i); if (k && /^dv75/.test(k) && k !== 'dv75.seats') localStorage.removeItem(k); }
+  } catch (e) {}
+  if (/[?&]nofx\b/.test(location.search)) document.documentElement.classList.add('no-fx');
+</script>
+</head>
+<body>
+<a class="skip" href="#vessel">Skip to team size</a>
+
+<header class="top">
+  <a class="logo" href="#" aria-label="Tidal home"><i aria-hidden="true"></i>Tidal</a>
+  <nav aria-label="Main">
+    <a href="#">Product</a><a href="#">Customers</a><a href="#" aria-current="page">Pricing</a><a href="#">Docs</a>
+  </nav>
+  <a class="signin" href="#">Sign in</a>
+</header>
+
+<main class="hero" id="main">
+  <section class="copy" aria-labelledby="h1">
+    <p class="eyebrow" id="eyebrow">Pricing · fills to fit</p>
+    <h1 id="h1">Pay for the team <br>you <em>actually</em> have.</h1>
+    <p class="lead">Drag the water to your headcount. Every seat is billed monthly, and the price per seat drops as your team grows.</p>
+    <div class="total" id="total">
+      <p class="p" id="ptotal" aria-hidden="true">$288</p>
+      <p class="u"><b id="pseat">$12 per seat</b><span class="tier" id="tier" hidden>volume rate</span><br><span id="pnote">billed monthly · cancel any time</span></p>
+    </div>
+    <ul class="feat">
+      <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.2 8.4l3 2.9 6.6-6.7"/></svg>Unlimited boards</li>
+      <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.2 8.4l3 2.9 6.6-6.7"/></svg>SSO &amp; audit log</li>
+      <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.2 8.4l3 2.9 6.6-6.7"/></svg>Guest access</li>
+      <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.2 8.4l3 2.9 6.6-6.7"/></svg>Priority support</li>
+    </ul>
+    <div class="cta">
+      <button class="btn" id="go" type="button"><span class="spin" aria-hidden="true"></span><svg class="tick" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.6 3.4 7.4-8"/></svg><span class="lbl" id="go-lbl">Start 14-day trial</span></button>
+      <a class="ghost" id="sales" href="#">Talk to sales <span aria-hidden="true">→</span></a>
+      <button class="undo" id="undo" type="button" hidden>Change seats</button>
+    </div>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="stage" id="stage" aria-label="Team size">
+    <canvas class="fx" id="fx" aria-hidden="true"></canvas>
+    <div class="cv" id="cv" aria-hidden="true"><i class="cv-water" id="cv-water"></i><i class="cv-glass"></i></div>
+    <div class="scale" id="scale" aria-hidden="true"><b>Seats</b><i>10</i><i>20</i><i>30</i><i>40</i><i>50</i></div>
+    <div class="vessel" id="vessel" tabindex="0" role="slider" aria-label="Team size" aria-describedby="hint"
+         aria-valuemin="1" aria-valuemax="51" aria-valuenow="24" aria-valuetext="24 seats, $288 per month" aria-orientation="vertical"></div>
+    <div class="tag" id="tag" aria-hidden="true">
+      <div class="pill"><div class="n" id="tn">24 seats</div><div class="s" id="ts">$288 / month</div></div>
+      <i class="lead-line"></i><i class="dot"></i>
+    </div>
+    <div class="ghostlabel" id="ghost" aria-hidden="true">31</div>
+    <p class="hint" id="hint">drag the water<span class="k"> · <kbd aria-label="up arrow">↑</kbd> <kbd aria-label="down arrow">↓</kbd> to fine-tune</span></p>
+    <p class="locked" id="locked" hidden>Seats are managed by your workspace admin.</p>
+  </section>
+</main>
+
+<p class="cap" id="cap"><b>W · Water pricing</b><span>a team-size slider that fills a glass with water — the price rides the meniscus</span></p>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
